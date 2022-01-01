@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.schoolc2c.trade.mapper.AuctionMapper">
+    <select id="selectPageAuction" resultType="com.schoolc2c.bean.Auction" parameterType="int">
+        select * from auction limit #{startNum},#{pageSize}
+    </select>
+
+    <select id="selectAuctionByListId" resultType="com.schoolc2c.bean.Auction" parameterType="java.util.List">
+        select * from auction where id in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectPartPageAuction" resultType="com.schoolc2c.bean.Auction">
+        select * from auction where catalog3_id = #{catalog3Id} limit #{startNum},#{pageSize}
+    </select>
+
+</mapper>
